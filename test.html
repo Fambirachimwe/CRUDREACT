@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+
+    <style>
+        .progress {
+            background-color: #d8d8d8;
+            border-radius: 20px;
+            position: relative;
+            height: 30px;
+            width: 300px;
+        } 
+
+        .progress-done {
+            background: linear-gradient(to left, #F2709C, #FF9472);
+            /* box-shadow: 0 3px 3px -5px #F2709C, 0 2px 5px #F2709C; */
+            border-radius: 20px;
+            color: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100%;
+            width: 0;
+            opacity: 0;
+            transition: 1s ease 0.3s;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="progress">
+        <div class="progress-done" data-done="90">
+
+        </div>
+    </div>
+
+    <input class="messageCheckbox" id='checkers' type="checkbox" value="3" name="mailId[]">
+    <input class="messageCheckbox" id='checkers' type="checkbox" value="3" name="mailId[]">
+    <input class="messageCheckbox" id='checkers' type="checkbox" value="3" name="mailId[]">
+    <input class="messageCheckbox" id='checkers' type="checkbox" value="3" name="mailId[]">
+    
+
+
+</body>
+
+
+
+
+<script>
+
+    
+    const progress = document.querySelector('.progress-done');
+    var array = []
+    var unchecked = document.querySelectorAll('input[type=checkbox]');
+    const uncheckedVar = [...unchecked];  
+    var checkers = document.querySelectorAll('#checkers');  
+
+
+    progress.style.opacity = 1;
+    checkers.forEach(element => {
+        element.addEventListener('change', () => {
+        array = [];
+        var checkboxes = document.querySelectorAll('input[type=checkbox]:checked');
+
+        for (var i = 0; i < checkboxes.length; i++) {
+            
+            array.push(checkboxes[i].id)
+        }
+        const perc = (array.length / unchecked.length) * 100;
+        progress.style.width = perc + '%';
+        console.log(perc);
+
+        })
+        
+    })
+    
+</script>
+
+
+</html>
